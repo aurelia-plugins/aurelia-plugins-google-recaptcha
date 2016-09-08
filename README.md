@@ -51,7 +51,6 @@ export async function configure(aurelia) {
       config.options({
         hl: 'en', //see https://developers.google.com/recaptcha/docs/language
         siteKey: '6LcddxgTAAAAAMmkEMa1Vrp6TNcZG8kMMkcn-VCK' //see https://www.google.com/recaptcha/admin#createsite
-        
       });
     });
 
@@ -98,6 +97,7 @@ Assuming you have [aurelia-validation](https://github.com/aurelia/validation) co
 ```javascript
 import {inject, NewInstance} from 'aurelia-framework';
 import {ValidationController, ValidationRules} from 'aurelia-validation';
+import {ValidationRenderer} from './validationRenderer';
 
 @inject(NewInstance.of(ValidationController))
 export class App {
