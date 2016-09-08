@@ -2,7 +2,6 @@
 
 A recaptcha plugin for Aurelia.
 
-
 ## Installation
 
 **Webpack/Aurelia CLI**
@@ -36,7 +35,6 @@ Add to `package.json`
     }
   }
 ```
-
 
 Inside of your `main.js` or `main.ts` file simply load the plugin inside of the configure method using `.plugin()`.
 
@@ -82,7 +80,6 @@ export class App {
   }
 }
 ````
-
 
 ### Validation
 
