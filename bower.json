@@ -1,0 +1,25 @@
+{
+  "name": "aurelia-recaptcha",
+  "version": "1.0.0",
+  "description": "A recaptcha plugin for Aurelia.",
+  "keywords": [
+    "aurelia",
+    "plugin",
+    "recaptcha"
+  ],
+  "homepage": "https://github.com/aurelia-plugins/aurelia-recaptcha",
+  "main": "dist/commonjs/aurelia-recaptcha.js",
+  "moduleType": "node",
+  "license": "MIT",
+  "authors": [
+    "Bart Lenaerts <bart@itprosolutions.be> (http://itprosolutions.be/)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/aurelia-plugins/aurelia-recaptcha"
+  },
+  "dependencies": {
+    "aurelia-dependency-injection": "^1.0.0",
+    "aurelia-templating": "^1.1.0"
+  }
+}
