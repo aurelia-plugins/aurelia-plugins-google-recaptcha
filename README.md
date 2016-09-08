@@ -11,12 +11,16 @@ A recaptcha plugin for Aurelia.
 npm install aurelia-recaptcha --save
 ```
 
-or
-
 **JSPM**
 
 ```shell
 jspm install aurelia-recaptcha
+```
+
+**Bower**
+
+```shell
+bower install aurelia-recaptcha
 ```
 
 ## Configuration
