@@ -7,7 +7,7 @@ exports.Recaptcha = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 var _aureliaDependencyInjection = require('aurelia-dependency-injection');
 
@@ -62,7 +62,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.noView)(), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaRecaptchaConfig.Config), _dec(_class = _dec2(_class = (_class2 = function () {
+var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement)('recaptcha'), _dec2 = (0, _aureliaTemplating.noView)(), _dec3 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaRecaptchaConfig.Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
   function Recaptcha(element, config) {
     
 
@@ -170,4 +170,4 @@ var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.noView)(), _d
   initializer: function initializer() {
     return 'image';
   }
-})), _class2)) || _class) || _class);
+})), _class2)) || _class) || _class) || _class);

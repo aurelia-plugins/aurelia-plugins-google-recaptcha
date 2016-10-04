@@ -3,6 +3,7 @@ import {
 } from 'aurelia-dependency-injection';
 import {
   bindable,
+  customElement,
   noView
 } from 'aurelia-templating';
 
@@ -38,11 +39,3 @@ export declare class Recaptcha {
 // IMPORTS
 // PUBLIC METHODS
 export declare function configure(aurelia?: any, configCallback?: any): any;
-
-// PUBLIC CLASSES
-export declare {
-  Config
-};
-export declare {
-  Recaptcha
-};

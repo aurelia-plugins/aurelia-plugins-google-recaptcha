@@ -1,5 +1,5 @@
 import {inject} from 'aurelia-dependency-injection';
-import {bindable,noView} from 'aurelia-templating';
+import {bindable,customElement,noView} from 'aurelia-templating';
 
 // PUBLIC CLASS
 export class Config {
@@ -28,6 +28,7 @@ export class Config {
 
 // IMPORTS
 // CLASS ATTRIBUTES
+@customElement('recaptcha')
 @noView()
 @inject(Element, Config)
 
@@ -95,10 +96,5 @@ export function configure(aurelia, configCallback) {
   var instance = aurelia.container.get(Config);
   if (configCallback !== undefined && typeof(configCallback) === 'function')
     configCallback(instance);
-  aurelia.globalResources('./aurelia-recaptcha-class');
+  aurelia.globalResources('./aurelia-recaptcha-element');
 }
-
-
-// PUBLIC CLASSES
-export {Config};
-export {Recaptcha};

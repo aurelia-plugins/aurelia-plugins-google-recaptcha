@@ -1,11 +1,12 @@
 // IMPORTS
 import {inject} from 'aurelia-dependency-injection';
-import {bindable, noView} from 'aurelia-templating';
+import {bindable, customElement, noView} from 'aurelia-templating';
 
 import {Config} from './aurelia-recaptcha-config';
 
 
 // CLASS ATTRIBUTES
+@customElement('recaptcha')
 @noView()
 @inject(Element, Config)
 

@@ -3,7 +3,7 @@
 System.register(['aurelia-dependency-injection', 'aurelia-templating', './aurelia-recaptcha-config'], function (_export, _context) {
   "use strict";
 
-  var inject, bindable, noView, Config, _typeof, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, Recaptcha;
+  var inject, bindable, customElement, noView, Config, _typeof, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, Recaptcha;
 
   function _asyncToGenerator(fn) {
     return function () {
@@ -84,6 +84,7 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
       inject = _aureliaDependencyInjection.inject;
     }, function (_aureliaTemplating) {
       bindable = _aureliaTemplating.bindable;
+      customElement = _aureliaTemplating.customElement;
       noView = _aureliaTemplating.noView;
     }, function (_aureliaRecaptchaConfig) {
       Config = _aureliaRecaptchaConfig.Config;
@@ -95,7 +96,7 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
         return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
       };
 
-      _export('Recaptcha', Recaptcha = (_dec = noView(), _dec2 = inject(Element, Config), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Recaptcha', Recaptcha = (_dec = customElement('recaptcha'), _dec2 = noView(), _dec3 = inject(Element, Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
         function Recaptcha(element, config) {
           
 
@@ -203,7 +204,7 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
         initializer: function initializer() {
           return 'image';
         }
-      })), _class2)) || _class) || _class));
+      })), _class2)) || _class) || _class) || _class));
 
       _export('Recaptcha', Recaptcha);
     }

@@ -1,13 +1,13 @@
 'use strict';
 
-System.register(['./aurelia-recaptcha-config', './aurelia-recaptcha-class'], function (_export, _context) {
+System.register(['./aurelia-recaptcha-config'], function (_export, _context) {
   "use strict";
 
-  var Config, Recaptcha;
+  var Config;
   function configure(aurelia, configCallback) {
     var instance = aurelia.container.get(Config);
     if (configCallback !== undefined && typeof configCallback === 'function') configCallback(instance);
-    aurelia.globalResources('./aurelia-recaptcha-class');
+    aurelia.globalResources('./aurelia-recaptcha-element');
   }
 
   _export('configure', configure);
@@ -15,13 +15,7 @@ System.register(['./aurelia-recaptcha-config', './aurelia-recaptcha-class'], fun
   return {
     setters: [function (_aureliaRecaptchaConfig) {
       Config = _aureliaRecaptchaConfig.Config;
-    }, function (_aureliaRecaptchaClass) {
-      Recaptcha = _aureliaRecaptchaClass.Recaptcha;
     }],
-    execute: function () {
-      _export('Config', Config);
-
-      _export('Recaptcha', Recaptcha);
-    }
+    execute: function () {}
   };
 });

@@ -7,7 +7,7 @@ exports.Recaptcha = exports.Config = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 exports.configure = configure;
 
@@ -85,7 +85,7 @@ var Config = exports.Config = function () {
   return Config;
 }();
 
-var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.noView)(), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, Config), _dec(_class = _dec2(_class = (_class2 = function () {
+var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement)('recaptcha'), _dec2 = (0, _aureliaTemplating.noView)(), _dec3 = (0, _aureliaDependencyInjection.inject)(Element, Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
   function Recaptcha(element, config) {
     _classCallCheck(this, Recaptcha);
 
@@ -193,12 +193,9 @@ var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.noView)(), _d
   initializer: function initializer() {
     return 'image';
   }
-})), _class2)) || _class) || _class);
+})), _class2)) || _class) || _class) || _class);
 function configure(aurelia, configCallback) {
   var instance = aurelia.container.get(Config);
   if (configCallback !== undefined && typeof configCallback === 'function') configCallback(instance);
-  aurelia.globalResources('./aurelia-recaptcha-class');
+  aurelia.globalResources('./aurelia-recaptcha-element');
 }
-
-exports.Config = Config;
-exports.Recaptcha = Recaptcha;
