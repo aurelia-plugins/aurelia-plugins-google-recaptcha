@@ -1,34 +1,12 @@
-import {inject} from 'aurelia-dependency-injection';
-import {bindable,customElement,noView} from 'aurelia-templating';
-
-// PUBLIC CLASS
-export class Config {
-  // PRIVATE PROPERTIES
-  _config;
-
-  // CONSTRUCTOR
-  constructor() {
-    this._config = { hl: 'en', siteKey: '' };
-  }
-
-  // PUBLIC METHODS
-  get(key) {
-    return this._config[key];
-  }
-
-  options(obj) {
-    Object.assign(this._config, obj);
-  }
-
-  set(key, value) {
-    this._config[key] = value;
-    return this._config[key];
-  }
-}
-
 // IMPORTS
+import {inject} from 'aurelia-dependency-injection';
+import {bindable, customElement, noView} from 'aurelia-templating';
+
+import {Config} from './aurelia-plugins-google-recaptcha-config';
+
+
 // CLASS ATTRIBUTES
-@customElement('recaptcha')
+@customElement('aup-google-recaptcha')
 @noView()
 @inject(Element, Config)
 
@@ -40,7 +18,7 @@ export class Recaptcha {
   _element;
   _scriptPromise = null;
 
-  // PUBLIC PROPERTIES
+  // BINDABLE PROPERTIES
   @bindable callback;
   @bindable size = 'normal';
   @bindable theme = 'light';
@@ -48,10 +26,10 @@ export class Recaptcha {
 
   // CONSTRUCTOR
   constructor(element, config) {
-    this._element = element;
     this._config = config;
+    this._element = element;
 
-    if (!this._config.get('siteKey')) console.error('No sitekey has been specified.');
+    if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
 
     this._loadApiScript();
   }
@@ -67,15 +45,15 @@ export class Recaptcha {
     if (this._scriptPromise) return this._scriptPromise;
 
     if (window.grecaptcha === undefined) {
-      let script = document.createElement('script');
+      var script = document.createElement('script');
       script.async = true;
       script.defer = true;
-      script.src = 'https://www.google.com/recaptcha/api.js?onload=aureliaRecaptchaOnLoadCallback&render=explicit&hl=' + this._config.get('hl');
+      script.src = 'https://www.google.com/recaptcha/api.js?onload=aureliaPluginsGoogleRecaptchaOnLoadCallback&render=explicit&hl=' + this._config.get('hl');
       script.type = 'text/javascript';
       document.head.appendChild(script);
 
       this._scriptPromise = new Promise((resolve, reject) => {
-        window.aureliaRecaptchaOnLoadCallback = () => { resolve(); };
+        window.aureliaPluginsGoogleRecaptchaOnLoadCallback = () => { resolve(); };
         script.onerror = error => { reject(error); };
       });
       return this._scriptPromise;
@@ -88,13 +66,4 @@ export class Recaptcha {
 
     return false;
   }
-}
-
-// IMPORTS
-// PUBLIC METHODS
-export function configure(aurelia, configCallback) {
-  var instance = aurelia.container.get(Config);
-  if (configCallback !== undefined && typeof(configCallback) === 'function')
-    configCallback(instance);
-  aurelia.globalResources('./aurelia-recaptcha-element');
 }

@@ -1,14 +1,16 @@
 {
-  "name": "aurelia-recaptcha",
-  "version": "1.0.1",
-  "description": "A recaptcha plugin for Aurelia.",
+  "name": "aurelia-plugins-google-recaptcha",
+  "version": "1.1.0",
+  "description": "A Google Recaptcha plugin for Aurelia.",
   "keywords": [
     "aurelia",
+    "plugins",
     "plugin",
+    "google",
     "recaptcha"
   ],
-  "homepage": "https://github.com/aurelia-plugins/aurelia-recaptcha",
-  "main": "dist/commonjs/aurelia-recaptcha.js",
+  "homepage": "https://github.com/aurelia-plugins/aurelia-plugins-google-recaptcha",
+  "main": "dist/commonjs/aurelia-plugins-google-recaptcha.js",
   "moduleType": "node",
   "license": "MIT",
   "authors": [
@@ -16,10 +18,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/aurelia-plugins/aurelia-recaptcha"
+    "url": "http://github.com/aurelia-plugins/aurelia-plugins-google-recaptcha"
   },
   "dependencies": {
-    "aurelia-dependency-injection": "^1.0.0",
-    "aurelia-templating": "^1.1.0"
+    "aurelia-dependency-injection": "^1.2.0",
+    "aurelia-templating": "^1.1.2"
   }
 }

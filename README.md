@@ -1,25 +1,25 @@
-# aurelia-recaptcha
+# aurelia-plugins-google-recaptcha
 
-A recaptcha plugin for Aurelia.
+A Google Recaptcha plugin for Aurelia.
 
 ## Installation
 
 **Webpack/Aurelia CLI**
 
 ```shell
-npm install aurelia-recaptcha --save
+npm install aurelia-plugins-google-recaptcha --save
 ```
 
 **JSPM**
 
 ```shell
-jspm install aurelia-recaptcha
+jspm install aurelia-plugins-google-recaptcha
 ```
 
 **Bower**
 
 ```shell
-bower install aurelia-recaptcha
+bower install aurelia-plugins-google-recaptcha
 ```
 
 ## Configuration
@@ -30,7 +30,7 @@ Add to `package.json`
   "aurelia": {
     "build": {
       "resources": [
-        "aurelia-recaptcha"
+        "aurelia-plugins-google-recaptcha"
       ]
     }
   }
@@ -45,7 +45,7 @@ export async function configure(aurelia) {
     .developmentLogging();
 
   aurelia.use
-    .plugin('aurelia-recaptcha', config => {
+    .plugin('aurelia-plugins-google-recaptcha', config => {
       config.options({
         hl: 'en', //see https://developers.google.com/recaptcha/docs/language
         siteKey: '6LcddxgTAAAAAMmkEMa1Vrp6TNcZG8kMMkcn-VCK' //see https://www.google.com/recaptcha/admin#createsite
@@ -59,14 +59,14 @@ export async function configure(aurelia) {
 
 ## Usage
 
-Once recaptcha is configured, to use it simply add the custom element `<recaptcha></recaptcha>` in your view.
+Once Google Recaptcha is configured, to use it simply add the custom element `<aup-google-recaptcha></aup-google-recaptcha>` in your view.
 
 ### Get the response
 
 To get the response of the recaptcha, add an eventhandler to `callback.call` of the custom element.
 
 ```html
-<recaptcha callback.call="recaptcha($event)"></recaptcha>
+<aup-google-recaptcha callback.call="recaptcha($event)"></aup-google-recaptcha>
 ```
 
 ```javascript
@@ -83,11 +83,11 @@ export class App {
 
 ### Validation
 
-Assuming you have [aurelia-validation](https://github.com/aurelia/validation) correctly configured, the recaptcha can be validated when submitting a form.
+Assuming you have [aurelia-validation](https://github.com/aurelia/validation) correctly configured, the Google Recaptcha can be validated when submitting a form.
 
 ```html
 <form submit.delegate="submit()">
-    <recaptcha callback.call="recaptcha($event)" value.bind="response & validate"></recaptcha>
+    <aup-google-recaptcha callback.call="recaptcha($event)" value.bind="response & validate"></aup-google-recaptcha>
 </form>
 ```
 

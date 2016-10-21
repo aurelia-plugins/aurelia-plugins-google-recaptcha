@@ -1,23 +1,25 @@
 {
-  "name": "aurelia-recaptcha",
-  "version": "1.0.1",
-  "description": "A recaptcha plugin for Aurelia.",
+  "name": "aurelia-plugins-google-recaptcha",
+  "version": "1.1.0",
+  "description": "A Google Recaptcha plugin for Aurelia.",
   "keywords": [
     "aurelia",
+    "plugins",
     "plugin",
+    "google",
     "recaptcha"
   ],
-  "homepage": "https://github.com/aurelia-plugins/aurelia-recaptcha",
+  "homepage": "https://github.com/aurelia-plugins/aurelia-plugins-google-recaptcha",
   "bugs": {
-    "url": "https://github.com/aurelia-plugins/aurelia-recaptcha/issues"
+    "url": "https://github.com/aurelia-plugins/aurelia-plugins-google-recaptcha/issues"
   },
   "license": "MIT",
   "author": "Bart Lenaerts <bart@itprosolutions.be> (http://itprosolutions.be/)",
-  "main": "dist/commonjs/aurelia-recaptcha.js",
-  "typings": "dist/aurelia-recaptcha.d.ts",
+  "main": "dist/commonjs/aurelia-plugins-google-recaptcha.js",
+  "typings": "dist/aurelia-plugins-google-recaptcha.d.ts",
   "repository": {
     "type": "git",
-    "url": "http://github.com/aurelia-plugins/aurelia-recaptcha"
+    "url": "http://github.com/aurelia-plugins/aurelia-plugins-google-recaptcha"
   },
   "jspm": {
     "registry": "npm",
@@ -28,18 +30,18 @@
       "dist": "dist/amd"
     },
     "peerDependencies": {
-      "aurelia-dependency-injection": "^1.0.0",
-      "aurelia-templating": "^1.1.0"
+      "aurelia-dependency-injection": "^1.2.0",
+      "aurelia-templating": "^1.1.2"
     },
     "dependencies": {
-      "aurelia-dependency-injection": "^1.0.0",
-      "aurelia-templating": "^1.1.0"
+      "aurelia-dependency-injection": "^1.2.0",
+      "aurelia-templating": "^1.1.2"
     },
     "devDependencies": {}
   },
   "dependencies": {
-    "aurelia-dependency-injection": "^1.0.0",
-    "aurelia-templating": "^1.1.0"
+    "aurelia-dependency-injection": "^1.2.0",
+    "aurelia-templating": "^1.1.2"
   },
   "devDependencies": {
     "aurelia-tools": "^0.2.4",
@@ -92,7 +94,7 @@
   "aurelia": {
     "build": {
       "resources": [
-        "aurelia-recaptcha/aurelia-recaptcha-element"
+        "aurelia-plugins-google-recaptcha/aurelia-plugins-google-recaptcha-element"
       ]
     },
     "documentation": {

@@ -1,4 +1,17 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Recaptcha = undefined;
+
 var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+
+var _aureliaDependencyInjection = require('aurelia-dependency-injection');
+
+var _aureliaTemplating = require('aurelia-templating');
+
+var _aureliaPluginsGoogleRecaptchaConfig = require('./aurelia-plugins-google-recaptcha-config');
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
 
@@ -11,6 +24,8 @@ function _initDefineProp(target, property, descriptor, context) {
     value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
   });
 }
+
+
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
@@ -45,13 +60,10 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { inject } from 'aurelia-dependency-injection';
-import { bindable, customElement, noView } from 'aurelia-templating';
+var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement)('aup-google-recaptcha'), _dec2 = (0, _aureliaTemplating.noView)(), _dec3 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaPluginsGoogleRecaptchaConfig.Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
+  function Recaptcha(element, config) {
+    
 
-import { Config } from './aurelia-recaptcha-config';
-
-export let Recaptcha = (_dec = customElement('recaptcha'), _dec2 = noView(), _dec3 = inject(Element, Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = class Recaptcha {
-  constructor(element, config) {
     this._scriptPromise = null;
 
     _initDefineProp(this, 'callback', _descriptor, this);
@@ -62,39 +74,57 @@ export let Recaptcha = (_dec = customElement('recaptcha'), _dec2 = noView(), _de
 
     _initDefineProp(this, 'type', _descriptor4, this);
 
-    this._element = element;
     this._config = config;
+    this._element = element;
 
-    if (!this._config.get('siteKey')) console.error('No sitekey has been specified.');
+    if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
 
     this._loadApiScript();
   }
 
-  attached() {
-    var _this = this;
+  Recaptcha.prototype.attached = function () {
+    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return this._scriptPromise;
 
-    return _asyncToGenerator(function* () {
-      yield _this._scriptPromise;
-      window.grecaptcha.render(_this._element, { callback: _this.callback, sitekey: _this._config.get('siteKey'), size: _this.size, theme: _this.theme, type: _this.type });
-    })();
-  }
+            case 2:
+              window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
 
-  _loadApiScript() {
+            case 3:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    }));
+
+    function attached() {
+      return _ref.apply(this, arguments);
+    }
+
+    return attached;
+  }();
+
+  Recaptcha.prototype._loadApiScript = function _loadApiScript() {
     if (this._scriptPromise) return this._scriptPromise;
 
     if (window.grecaptcha === undefined) {
-      let script = document.createElement('script');
+      var script = document.createElement('script');
       script.async = true;
       script.defer = true;
-      script.src = 'https://www.google.com/recaptcha/api.js?onload=aureliaRecaptchaOnLoadCallback&render=explicit&hl=' + this._config.get('hl');
+      script.src = 'https://www.google.com/recaptcha/api.js?onload=aureliaPluginsGoogleRecaptchaOnLoadCallback&render=explicit&hl=' + this._config.get('hl');
       script.type = 'text/javascript';
       document.head.appendChild(script);
 
-      this._scriptPromise = new Promise((resolve, reject) => {
-        window.aureliaRecaptchaOnLoadCallback = () => {
+      this._scriptPromise = new Promise(function (resolve, reject) {
+        window.aureliaPluginsGoogleRecaptchaOnLoadCallback = function () {
           resolve();
         };
-        script.onerror = error => {
+        script.onerror = function (error) {
           reject(error);
         };
       });
@@ -102,30 +132,32 @@ export let Recaptcha = (_dec = customElement('recaptcha'), _dec2 = noView(), _de
     }
 
     if (window.grecaptcha) {
-      this._scriptPromise = new Promise(resolve => {
+      this._scriptPromise = new Promise(function (resolve) {
         resolve();
       });
       return this._scriptPromise;
     }
 
     return false;
-  }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'callback', [bindable], {
+  };
+
+  return Recaptcha;
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'callback', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'size', [bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'size', [_aureliaTemplating.bindable], {
   enumerable: true,
-  initializer: function () {
+  initializer: function initializer() {
     return 'normal';
   }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'theme', [bindable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'theme', [_aureliaTemplating.bindable], {
   enumerable: true,
-  initializer: function () {
+  initializer: function initializer() {
     return 'light';
   }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'type', [bindable], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'type', [_aureliaTemplating.bindable], {
   enumerable: true,
-  initializer: function () {
+  initializer: function initializer() {
     return 'image';
   }
 })), _class2)) || _class) || _class) || _class);

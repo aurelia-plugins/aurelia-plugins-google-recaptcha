@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-dependency-injection', 'aurelia-templating', './aurelia-recaptcha-config'], function (_export, _context) {
+System.register(['aurelia-dependency-injection', 'aurelia-templating', './aurelia-plugins-google-recaptcha-config'], function (_export, _context) {
   "use strict";
 
-  var inject, bindable, customElement, noView, Config, _typeof, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, Recaptcha;
+  var inject, bindable, customElement, noView, Config, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, Recaptcha;
 
   function _asyncToGenerator(fn) {
     return function () {
@@ -86,17 +86,11 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
       bindable = _aureliaTemplating.bindable;
       customElement = _aureliaTemplating.customElement;
       noView = _aureliaTemplating.noView;
-    }, function (_aureliaRecaptchaConfig) {
-      Config = _aureliaRecaptchaConfig.Config;
+    }, function (_aureliaPluginsGoogleRecaptchaConfig) {
+      Config = _aureliaPluginsGoogleRecaptchaConfig.Config;
     }],
     execute: function () {
-      _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-        return typeof obj;
-      } : function (obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
-      };
-
-      _export('Recaptcha', Recaptcha = (_dec = customElement('recaptcha'), _dec2 = noView(), _dec3 = inject(Element, Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
+      _export('Recaptcha', Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = noView(), _dec3 = inject(Element, Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
         function Recaptcha(element, config) {
           
 
@@ -110,10 +104,10 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
 
           _initDefineProp(this, 'type', _descriptor4, this);
 
-          this._element = element;
           this._config = config;
+          this._element = element;
 
-          if (!this._config.get('siteKey')) console.error('No sitekey has been specified.');
+          if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
 
           this._loadApiScript();
         }
@@ -146,33 +140,25 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
         }();
 
         Recaptcha.prototype._loadApiScript = function _loadApiScript() {
-          var _this = this;
-
           if (this._scriptPromise) return this._scriptPromise;
 
           if (window.grecaptcha === undefined) {
-            var _ret = function () {
-              var script = document.createElement('script');
-              script.async = true;
-              script.defer = true;
-              script.src = 'https://www.google.com/recaptcha/api.js?onload=aureliaRecaptchaOnLoadCallback&render=explicit&hl=' + _this._config.get('hl');
-              script.type = 'text/javascript';
-              document.head.appendChild(script);
+            var script = document.createElement('script');
+            script.async = true;
+            script.defer = true;
+            script.src = 'https://www.google.com/recaptcha/api.js?onload=aureliaPluginsGoogleRecaptchaOnLoadCallback&render=explicit&hl=' + this._config.get('hl');
+            script.type = 'text/javascript';
+            document.head.appendChild(script);
 
-              _this._scriptPromise = new Promise(function (resolve, reject) {
-                window.aureliaRecaptchaOnLoadCallback = function () {
-                  resolve();
-                };
-                script.onerror = function (error) {
-                  reject(error);
-                };
-              });
-              return {
-                v: _this._scriptPromise
+            this._scriptPromise = new Promise(function (resolve, reject) {
+              window.aureliaPluginsGoogleRecaptchaOnLoadCallback = function () {
+                resolve();
               };
-            }();
-
-            if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+              script.onerror = function (error) {
+                reject(error);
+              };
+            });
+            return this._scriptPromise;
           }
 
           if (window.grecaptcha) {

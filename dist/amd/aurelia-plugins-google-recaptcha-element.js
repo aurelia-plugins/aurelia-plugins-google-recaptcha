@@ -1,16 +1,10 @@
-define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aurelia-recaptcha-config'], function (exports, _aureliaDependencyInjection, _aureliaTemplating, _aureliaRecaptchaConfig) {
+define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aurelia-plugins-google-recaptcha-config'], function (exports, _aureliaDependencyInjection, _aureliaTemplating, _aureliaPluginsGoogleRecaptchaConfig) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
   exports.Recaptcha = undefined;
-
-  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
-  };
 
   function _asyncToGenerator(fn) {
     return function () {
@@ -88,7 +82,7 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aure
 
   var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
-  var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement)('recaptcha'), _dec2 = (0, _aureliaTemplating.noView)(), _dec3 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaRecaptchaConfig.Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
+  var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement)('aup-google-recaptcha'), _dec2 = (0, _aureliaTemplating.noView)(), _dec3 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaPluginsGoogleRecaptchaConfig.Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
     function Recaptcha(element, config) {
       
 
@@ -102,10 +96,10 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aure
 
       _initDefineProp(this, 'type', _descriptor4, this);
 
-      this._element = element;
       this._config = config;
+      this._element = element;
 
-      if (!this._config.get('siteKey')) console.error('No sitekey has been specified.');
+      if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
 
       this._loadApiScript();
     }
@@ -138,33 +132,25 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aure
     }();
 
     Recaptcha.prototype._loadApiScript = function _loadApiScript() {
-      var _this = this;
-
       if (this._scriptPromise) return this._scriptPromise;
 
       if (window.grecaptcha === undefined) {
-        var _ret = function () {
-          var script = document.createElement('script');
-          script.async = true;
-          script.defer = true;
-          script.src = 'https://www.google.com/recaptcha/api.js?onload=aureliaRecaptchaOnLoadCallback&render=explicit&hl=' + _this._config.get('hl');
-          script.type = 'text/javascript';
-          document.head.appendChild(script);
+        var script = document.createElement('script');
+        script.async = true;
+        script.defer = true;
+        script.src = 'https://www.google.com/recaptcha/api.js?onload=aureliaPluginsGoogleRecaptchaOnLoadCallback&render=explicit&hl=' + this._config.get('hl');
+        script.type = 'text/javascript';
+        document.head.appendChild(script);
 
-          _this._scriptPromise = new Promise(function (resolve, reject) {
-            window.aureliaRecaptchaOnLoadCallback = function () {
-              resolve();
-            };
-            script.onerror = function (error) {
-              reject(error);
-            };
-          });
-          return {
-            v: _this._scriptPromise
+        this._scriptPromise = new Promise(function (resolve, reject) {
+          window.aureliaPluginsGoogleRecaptchaOnLoadCallback = function () {
+            resolve();
           };
-        }();
-
-        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+          script.onerror = function (error) {
+            reject(error);
+          };
+        });
+        return this._scriptPromise;
       }
 
       if (window.grecaptcha) {

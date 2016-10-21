@@ -1,1 +1,1 @@
-export * from './aurelia-recaptcha';
+export * from './aurelia-plugins-google-recaptcha';
