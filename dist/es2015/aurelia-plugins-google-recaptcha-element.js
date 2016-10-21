@@ -86,7 +86,7 @@ export let Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = no
       var script = document.createElement('script');
       script.async = true;
       script.defer = true;
-      script.src = 'https://www.google.com/recaptcha/api.js?onload=aureliaPluginsGoogleRecaptchaOnLoadCallback&render=explicit&hl=' + this._config.get('hl');
+      script.src = `https://www.google.com/recaptcha/api.js?hl=${ this._config.get('hl') }&onload=aureliaPluginsGoogleRecaptchaOnLoadCallback&render=explicit`;
       script.type = 'text/javascript';
       document.head.appendChild(script);
 

@@ -138,7 +138,7 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aure
         var script = document.createElement('script');
         script.async = true;
         script.defer = true;
-        script.src = 'https://www.google.com/recaptcha/api.js?onload=aureliaPluginsGoogleRecaptchaOnLoadCallback&render=explicit&hl=' + this._config.get('hl');
+        script.src = 'https://www.google.com/recaptcha/api.js?hl=' + this._config.get('hl') + '&onload=aureliaPluginsGoogleRecaptchaOnLoadCallback&render=explicit';
         script.type = 'text/javascript';
         document.head.appendChild(script);
 
