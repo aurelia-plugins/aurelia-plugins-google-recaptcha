@@ -53,8 +53,7 @@ export class Recaptcha {
         script.onerror = error => { reject(error); };
       });
     }
-    else if (window.grecaptcha) {
+    else if (window.grecaptcha)
       this._scriptPromise = new Promise(resolve => { resolve(); });
-    }
   }
 }
