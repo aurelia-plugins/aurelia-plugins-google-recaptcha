@@ -76,13 +76,12 @@ var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement
 
     this._config = config;
     this._element = element;
-
     if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
-
     this._loadApiScript();
+    this._initialize();
   }
 
-  Recaptcha.prototype.attached = function () {
+  Recaptcha.prototype._initialize = function () {
     var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
@@ -102,43 +101,35 @@ var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement
       }, _callee, this);
     }));
 
-    function attached() {
+    function _initialize() {
       return _ref.apply(this, arguments);
     }
 
-    return attached;
+    return _initialize;
   }();
 
   Recaptcha.prototype._loadApiScript = function _loadApiScript() {
-    if (this._scriptPromise) return this._scriptPromise;
-
+    if (this._scriptPromise) return;
     if (window.grecaptcha === undefined) {
       var script = document.createElement('script');
       script.async = true;
       script.defer = true;
-      script.src = 'https://www.google.com/recaptcha/api.js?hl=' + this._config.get('hl') + '&onload=aureliaPluginsGoogleRecaptchaOnLoadCallback&render=explicit';
+      script.src = 'https://www.google.com/recaptcha/api.js?hl=' + this._config.get('hl') + '&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit';
       script.type = 'text/javascript';
       document.head.appendChild(script);
-
       this._scriptPromise = new Promise(function (resolve, reject) {
-        window.aureliaPluginsGoogleRecaptchaOnLoadCallback = function () {
+        window.aureliaPluginsGoogleRecaptchaOnLoad = function () {
           resolve();
         };
         script.onerror = function (error) {
           reject(error);
         };
       });
-      return this._scriptPromise;
-    }
-
-    if (window.grecaptcha) {
+    } else if (window.grecaptcha) {
       this._scriptPromise = new Promise(function (resolve) {
         resolve();
       });
-      return this._scriptPromise;
     }
-
-    return false;
   };
 
   return Recaptcha;

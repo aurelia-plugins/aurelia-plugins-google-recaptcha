@@ -50,43 +50,34 @@ export class Recaptcha {
   constructor(element, config) {
     this._config = config;
     this._element = element;
-
     if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
-
     this._loadApiScript();
+    this._initialize();
   }
 
-  // LIFECYCLE HANDLERS
-  async attached() {
+  // PRIVATE METHODS
+  async _initialize() {
     await this._scriptPromise;
     window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
   }
 
-  // PRIVATE METHODS
   _loadApiScript() {
-    if (this._scriptPromise) return this._scriptPromise;
-
+    if (this._scriptPromise) return;
     if (window.grecaptcha === undefined) {
       var script = document.createElement('script');
       script.async = true;
       script.defer = true;
-      script.src = `https://www.google.com/recaptcha/api.js?hl=${this._config.get('hl')}&onload=aureliaPluginsGoogleRecaptchaOnLoadCallback&render=explicit`;
+      script.src = `https://www.google.com/recaptcha/api.js?hl=${this._config.get('hl')}&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit`;
       script.type = 'text/javascript';
       document.head.appendChild(script);
-
       this._scriptPromise = new Promise((resolve, reject) => {
-        window.aureliaPluginsGoogleRecaptchaOnLoadCallback = () => { resolve(); };
+        window.aureliaPluginsGoogleRecaptchaOnLoad = () => { resolve(); };
         script.onerror = error => { reject(error); };
       });
-      return this._scriptPromise;
     }
-
-    if (window.grecaptcha) {
+    else if (window.grecaptcha) {
       this._scriptPromise = new Promise(resolve => { resolve(); });
-      return this._scriptPromise;
     }
-
-    return false;
   }
 }
 

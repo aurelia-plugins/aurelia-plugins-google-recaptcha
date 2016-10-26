@@ -31,9 +31,6 @@ export declare class Recaptcha {
   
   // CONSTRUCTOR
   constructor(element?: any, config?: any);
-  
-  // LIFECYCLE HANDLERS
-  attached(): any;
 }
 
 // IMPORTS
