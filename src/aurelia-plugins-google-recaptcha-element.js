@@ -13,9 +13,11 @@ import {Config} from './aurelia-plugins-google-recaptcha-config';
 
 // PUBLIC CLASS
 export class Recaptcha {
-  // PRIVATE PROPERTIES
+  // PRIVATE PROPERTIES (DI)
   _config;
   _element;
+
+  // PRIVATE PROPERTIES (CUSTOM)
   _scriptPromise = null;
 
   // BINDABLE PROPERTIES
