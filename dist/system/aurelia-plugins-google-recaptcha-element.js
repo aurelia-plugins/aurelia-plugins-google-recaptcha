@@ -3,7 +3,7 @@
 System.register(['aurelia-dependency-injection', 'aurelia-templating', './aurelia-plugins-google-recaptcha-config'], function (_export, _context) {
   "use strict";
 
-  var inject, bindable, customElement, noView, Config, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, Recaptcha;
+  var inject, bindable, customElement, noView, Config, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, Recaptcha;
 
   function _asyncToGenerator(fn) {
     return function () {
@@ -104,6 +104,8 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
 
           _initDefineProp(this, 'type', _descriptor4, this);
 
+          _initDefineProp(this, 'widgetId', _descriptor5, this);
+
           this._config = config;
           this._element = element;
           if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
@@ -124,7 +126,7 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
                     return this._scriptPromise;
 
                   case 2:
-                    window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
+                    this.widgetId = window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
 
                   case 3:
                   case 'end':
@@ -188,6 +190,9 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
         initializer: function initializer() {
           return 'image';
         }
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'widgetId', [bindable], {
+        enumerable: true,
+        initializer: null
       })), _class2)) || _class) || _class) || _class));
 
       _export('Recaptcha', Recaptcha);

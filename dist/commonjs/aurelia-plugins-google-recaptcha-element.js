@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Recaptcha = undefined;
 
-var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
 
 var _aureliaDependencyInjection = require('aurelia-dependency-injection');
 
@@ -74,6 +74,8 @@ var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement
 
     _initDefineProp(this, 'type', _descriptor4, this);
 
+    _initDefineProp(this, 'widgetId', _descriptor5, this);
+
     this._config = config;
     this._element = element;
     if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
@@ -94,7 +96,7 @@ var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement
               return this._scriptPromise;
 
             case 2:
-              window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
+              this.widgetId = window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
 
             case 3:
             case 'end':
@@ -158,4 +160,7 @@ var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement
   initializer: function initializer() {
     return 'image';
   }
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'widgetId', [_aureliaTemplating.bindable], {
+  enumerable: true,
+  initializer: null
 })), _class2)) || _class) || _class) || _class);

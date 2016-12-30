@@ -80,7 +80,7 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aure
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+  var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
 
   var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement)('aup-google-recaptcha'), _dec2 = (0, _aureliaTemplating.noView)(), _dec3 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaPluginsGoogleRecaptchaConfig.Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
     function Recaptcha(element, config) {
@@ -95,6 +95,8 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aure
       _initDefineProp(this, 'theme', _descriptor3, this);
 
       _initDefineProp(this, 'type', _descriptor4, this);
+
+      _initDefineProp(this, 'widgetId', _descriptor5, this);
 
       this._config = config;
       this._element = element;
@@ -116,7 +118,7 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aure
                 return this._scriptPromise;
 
               case 2:
-                window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
+                this.widgetId = window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
 
               case 3:
               case 'end':
@@ -180,5 +182,8 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aure
     initializer: function initializer() {
       return 'image';
     }
+  }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'widgetId', [_aureliaTemplating.bindable], {
+    enumerable: true,
+    initializer: null
   })), _class2)) || _class) || _class) || _class);
 });

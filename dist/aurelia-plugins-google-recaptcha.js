@@ -47,6 +47,7 @@ export class Recaptcha {
   @bindable size = 'normal';
   @bindable theme = 'light';
   @bindable type = 'image';
+  @bindable widgetId;
 
   // CONSTRUCTOR
   constructor(element, config) {
@@ -64,7 +65,7 @@ export class Recaptcha {
   // PRIVATE METHODS
   async _initialize() {
     await this._scriptPromise;
-    window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
+    this.widgetId = window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
   }
 
   _loadApiScript() {

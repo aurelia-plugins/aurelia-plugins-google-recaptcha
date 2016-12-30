@@ -28,6 +28,7 @@ export declare class Recaptcha {
   size: any;
   theme: any;
   type: any;
+  widgetId: any;
   
   // CONSTRUCTOR
   constructor(element?: any, config?: any);
