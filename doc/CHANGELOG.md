@@ -1,3 +1,9 @@
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/aurelia-plugins/aurelia-plugins-google-recaptcha/compare/v1.1.2...v1.1.3) (2016-12-30)
+
+* Bugfix to ensure callback function reference is populated by Aurelia binding, _before_ rendering the captcha.
+* Update to confirm to eslint requirements (brackets for all code blocks, `let` instead of `var`, etc.)
+
 ### 1.0.0-beta.1.1.0 (2016-03-23)
 
 * Update to Babel 6

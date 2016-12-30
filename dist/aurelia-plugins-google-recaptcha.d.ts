@@ -31,6 +31,9 @@ export declare class Recaptcha {
   
   // CONSTRUCTOR
   constructor(element?: any, config?: any);
+  
+  // AURELIA LIFECYCLE METHODS
+  bind(): any;
 }
 
 // IMPORTS

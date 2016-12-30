@@ -1,6 +1,6 @@
 var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -66,6 +66,9 @@ export let Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = no
     this._element = element;
     if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
     this._loadApiScript();
+  }
+
+  bind() {
     this._initialize();
   }
 
@@ -81,7 +84,7 @@ export let Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = no
   _loadApiScript() {
     if (this._scriptPromise) return;
     if (window.grecaptcha === undefined) {
-      var script = document.createElement('script');
+      let script = document.createElement('script');
       script.async = true;
       script.defer = true;
       script.src = `https://www.google.com/recaptcha/api.js?hl=${ this._config.get('hl') }&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit`;

@@ -23,9 +23,9 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aure
             resolve(value);
           } else {
             return Promise.resolve(value).then(function (value) {
-              return step("next", value);
+              step("next", value);
             }, function (err) {
-              return step("throw", err);
+              step("throw", err);
             });
           }
         }
@@ -100,8 +100,11 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aure
       this._element = element;
       if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
       this._loadApiScript();
-      this._initialize();
     }
+
+    Recaptcha.prototype.bind = function bind() {
+      this._initialize();
+    };
 
     Recaptcha.prototype._initialize = function () {
       var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
@@ -131,22 +134,26 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', './aure
     }();
 
     Recaptcha.prototype._loadApiScript = function _loadApiScript() {
+      var _this = this;
+
       if (this._scriptPromise) return;
       if (window.grecaptcha === undefined) {
-        var script = document.createElement('script');
-        script.async = true;
-        script.defer = true;
-        script.src = 'https://www.google.com/recaptcha/api.js?hl=' + this._config.get('hl') + '&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit';
-        script.type = 'text/javascript';
-        document.head.appendChild(script);
-        this._scriptPromise = new Promise(function (resolve, reject) {
-          window.aureliaPluginsGoogleRecaptchaOnLoad = function () {
-            resolve();
-          };
-          script.onerror = function (error) {
-            reject(error);
-          };
-        });
+        (function () {
+          var script = document.createElement('script');
+          script.async = true;
+          script.defer = true;
+          script.src = 'https://www.google.com/recaptcha/api.js?hl=' + _this._config.get('hl') + '&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit';
+          script.type = 'text/javascript';
+          document.head.appendChild(script);
+          _this._scriptPromise = new Promise(function (resolve, reject) {
+            window.aureliaPluginsGoogleRecaptchaOnLoad = function () {
+              resolve();
+            };
+            script.onerror = function (error) {
+              reject(error);
+            };
+          });
+        })();
       } else if (window.grecaptcha) {
         this._scriptPromise = new Promise(function (resolve) {
           resolve();
