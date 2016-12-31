@@ -35,9 +35,11 @@ export class Config {
 
 // PUBLIC CLASS
 export class Recaptcha {
-  // PRIVATE PROPERTIES
+  // PRIVATE PROPERTIES (DI)
   _config;
   _element;
+
+  // PRIVATE PROPERTIES (CUSTOM)
   _scriptPromise = null;
 
   // BINDABLE PROPERTIES
@@ -45,6 +47,7 @@ export class Recaptcha {
   @bindable size = 'normal';
   @bindable theme = 'light';
   @bindable type = 'image';
+  @bindable widgetId;
 
   // CONSTRUCTOR
   constructor(element, config) {
@@ -52,19 +55,23 @@ export class Recaptcha {
     this._element = element;
     if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
     this._loadApiScript();
+  }
+
+  // AURELIA LIFECYCLE METHODS
+  bind() {
     this._initialize();
   }
 
   // PRIVATE METHODS
   async _initialize() {
     await this._scriptPromise;
-    window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
+    this.widgetId = window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
   }
 
   _loadApiScript() {
     if (this._scriptPromise) return;
     if (window.grecaptcha === undefined) {
-      var script = document.createElement('script');
+      let script = document.createElement('script');
       script.async = true;
       script.defer = true;
       script.src = `https://www.google.com/recaptcha/api.js?hl=${this._config.get('hl')}&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit`;
@@ -74,8 +81,7 @@ export class Recaptcha {
         window.aureliaPluginsGoogleRecaptchaOnLoad = () => { resolve(); };
         script.onerror = error => { reject(error); };
       });
-    }
-    else if (window.grecaptcha) {
+    } else if (window.grecaptcha) {
       this._scriptPromise = new Promise(resolve => { resolve(); });
     }
   }
@@ -84,8 +90,10 @@ export class Recaptcha {
 // IMPORTS
 // PUBLIC METHODS
 export function configure(aurelia, configCallback) {
-  var instance = aurelia.container.get(Config);
-  if (configCallback !== undefined && typeof(configCallback) === 'function')
+  let instance = aurelia.container.get(Config);
+  if (configCallback !== undefined && typeof(configCallback) === 'function') {
     configCallback(instance);
+  }
+
   aurelia.globalResources('./aurelia-plugins-google-recaptcha-element');
 }
