@@ -63,7 +63,7 @@ Once Google Recaptcha is configured, to use it simply add the custom element `<a
 
 ### Get the response
 
-To get the response of the recaptcha, add an eventhandler to `callback.call` of the custom element.
+To get the response of the recaptcha, add an event handler to `callback.call` of the custom element.
 
 ```html
 <aup-google-recaptcha callback.call="recaptcha($event)"></aup-google-recaptcha>
@@ -87,7 +87,8 @@ Assuming you have [aurelia-validation](https://github.com/aurelia/validation) co
 
 ```html
 <form submit.delegate="submit()">
-    <aup-google-recaptcha callback.call="recaptcha($event)" value.bind="response & validate"></aup-google-recaptcha>
+  <aup-google-recaptcha callback.call="recaptcha($event)" value.bind="response & validate"></aup-google-recaptcha>
+  <button type="submit">Submit</button>
 </form>
 ```
 
@@ -114,8 +115,8 @@ export class App {
   
   async submit() {
     try {
-      var errors = await this.validationController.validate();
-      if (errors.length) return;
+      const errors = await this.validationController.validate();
+      if (!errors.valid) return;
       // Do some magic...
     }
     catch (err) {
