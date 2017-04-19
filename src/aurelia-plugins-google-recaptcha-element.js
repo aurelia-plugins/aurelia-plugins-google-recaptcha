@@ -14,11 +14,11 @@ import {Config} from './aurelia-plugins-google-recaptcha-config';
 // PUBLIC CLASS
 export class Recaptcha {
   // PRIVATE PROPERTIES (DI)
-  config;
-  element;
+  _config;
+  _element;
 
   // PRIVATE PROPERTIES (CUSTOM)
-  scriptPromise = null;
+  _scriptPromise = null;
 
   // BINDABLE PROPERTIES
   @bindable callback;
@@ -29,38 +29,38 @@ export class Recaptcha {
 
   // CONSTRUCTOR
   constructor(element, config) {
-    this.config = config;
-    this.element = element;
-    if (!this.config.get('siteKey')) return console.error('No sitekey has been specified.');
-    this.loadApiScript();
+    this._config = config;
+    this._element = element;
+    if (!this._config.get('siteKey')) return console.error('No sitekey has been specified.');
+    this._loadApiScript();
   }
 
-  // AURELIA LIFECYCLE METHODS
+  // LIFECYCLE HANDLERS
   bind() {
-    this.initialize();
+    this._initialize();
   }
 
   // PRIVATE METHODS
-  async initialize() {
-    await this.scriptPromise;
-    this.widgetId = window.grecaptcha.render(this.element, { callback: this.callback, sitekey: this.config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
+  async _initialize() {
+    await this._scriptPromise;
+    this.widgetId = window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
   }
 
-  loadApiScript() {
-    if (this.scriptPromise) return;
+  _loadApiScript() {
+    if (this._scriptPromise) return;
     if (window.grecaptcha === undefined) {
       const script = document.createElement('script');
       script.async = true;
       script.defer = true;
-      script.src = `https://www.google.com/recaptcha/api.js?hl=${this.config.get('hl')}&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit`;
+      script.src = `https://www.google.com/recaptcha/api.js?hl=${this._config.get('hl')}&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit`;
       script.type = 'text/javascript';
       document.head.appendChild(script);
-      this.scriptPromise = new Promise((resolve, reject) => {
+      this._scriptPromise = new Promise((resolve, reject) => {
         window.aureliaPluginsGoogleRecaptchaOnLoad = () => resolve();
         script.onerror = error => reject(error);
       });
     } else if (window.grecaptcha) {
-      this.scriptPromise = new Promise(resolve => resolve());
+      this._scriptPromise = new Promise(resolve => resolve());
     }
   }
 }
