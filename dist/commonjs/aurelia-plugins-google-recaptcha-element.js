@@ -23,6 +23,8 @@ function _initDefineProp(target, property, descriptor, context) {
   });
 }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
   Object['ke' + 'ys'](descriptor).forEach(function (key) {
@@ -56,8 +58,10 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-let Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement)('aup-google-recaptcha'), _dec2 = (0, _aureliaTemplating.noView)(), _dec3 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaPluginsGoogleRecaptchaConfig.Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = class Recaptcha {
-  constructor(element, config) {
+var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement)('aup-google-recaptcha'), _dec2 = (0, _aureliaTemplating.noView)(), _dec3 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaPluginsGoogleRecaptchaConfig.Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
+  function Recaptcha(element, config) {
+    _classCallCheck(this, Recaptcha);
+
     this._scriptPromise = null;
 
     _initDefineProp(this, 'callback', _descriptor, this);
@@ -76,49 +80,63 @@ let Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement
     this._loadApiScript();
   }
 
-  bind() {
+  Recaptcha.prototype.bind = function bind() {
     this._initialize();
-  }
+  };
 
-  _initialize() {
-    var _this = this;
-
-    return _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+  Recaptcha.prototype._initialize = function () {
+    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
       return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
-          case 0:
-            _context.next = 2;
-            return _this._scriptPromise;
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return this._scriptPromise;
 
-          case 2:
-            _this.widgetId = window.grecaptcha.render(_this._element, { callback: _this.callback, sitekey: _this._config.get('siteKey'), size: _this.size, theme: _this.theme, type: _this.type });
+            case 2:
+              this.widgetId = window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
 
-          case 3:
-          case 'end':
-            return _context.stop();
+            case 3:
+            case 'end':
+              return _context.stop();
+          }
         }
-      }, _callee, _this);
-    }))();
-  }
+      }, _callee, this);
+    }));
 
-  _loadApiScript() {
+    function _initialize() {
+      return _ref.apply(this, arguments);
+    }
+
+    return _initialize;
+  }();
+
+  Recaptcha.prototype._loadApiScript = function _loadApiScript() {
     if (this._scriptPromise) return;
     if (window.grecaptcha === undefined) {
-      const script = document.createElement('script');
+      var script = document.createElement('script');
       script.async = true;
       script.defer = true;
       script.src = 'https://www.google.com/recaptcha/api.js?hl=' + this._config.get('hl') + '&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit';
       script.type = 'text/javascript';
       document.head.appendChild(script);
-      this._scriptPromise = new Promise((resolve, reject) => {
-        window.aureliaPluginsGoogleRecaptchaOnLoad = () => resolve();
-        script.onerror = error => reject(error);
+      this._scriptPromise = new Promise(function (resolve, reject) {
+        window.aureliaPluginsGoogleRecaptchaOnLoad = function () {
+          return resolve();
+        };
+        script.onerror = function (error) {
+          return reject(error);
+        };
       });
     } else if (window.grecaptcha) {
-      this._scriptPromise = new Promise(resolve => resolve());
+      this._scriptPromise = new Promise(function (resolve) {
+        return resolve();
+      });
     }
-  }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'callback', [_aureliaTemplating.bindable], {
+  };
+
+  return Recaptcha;
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'callback', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'size', [_aureliaTemplating.bindable], {

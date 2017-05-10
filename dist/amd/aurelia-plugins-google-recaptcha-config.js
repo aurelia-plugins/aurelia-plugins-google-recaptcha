@@ -1,23 +1,28 @@
-define(['exports'], function (exports) {
-  'use strict';
+'use strict';
 
-  exports.__esModule = true;
-  let Config = exports.Config = class Config {
-    constructor() {
-      this._config = { hl: 'en', siteKey: '' };
-    }
+exports.__esModule = true;
 
-    get(key) {
-      return this._config[key];
-    }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    options(obj) {
-      Object.assign(this._config, obj);
-    }
+var Config = exports.Config = function () {
+  function Config() {
+    _classCallCheck(this, Config);
 
-    set(key, value) {
-      this._config[key] = value;
-      return this._config[key];
-    }
+    this._config = { hl: 'en', siteKey: '' };
+  }
+
+  Config.prototype.get = function get(key) {
+    return this._config[key];
   };
-});
+
+  Config.prototype.options = function options(obj) {
+    Object.assign(this._config, obj);
+  };
+
+  Config.prototype.set = function set(key, value) {
+    this._config[key] = value;
+    return this._config[key];
+  };
+
+  return Config;
+}();
