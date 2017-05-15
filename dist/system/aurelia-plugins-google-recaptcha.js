@@ -1,12 +1,21 @@
 'use strict';
 
-exports.__esModule = true;
-exports.configure = configure;
+System.register(['./aurelia-plugins-google-recaptcha-config'], function (_export, _context) {
+  "use strict";
 
-var _aureliaPluginsGoogleRecaptchaConfig = require('./aurelia-plugins-google-recaptcha-config');
+  var Config;
+  function configure(aurelia, configCallback) {
+    var instance = aurelia.container.get(Config);
+    if (configCallback !== undefined && typeof configCallback === 'function') configCallback(instance);
+    aurelia.globalResources('./aurelia-plugins-google-recaptcha-element');
+  }
 
-function configure(aurelia, configCallback) {
-  var instance = aurelia.container.get(_aureliaPluginsGoogleRecaptchaConfig.Config);
-  if (configCallback !== undefined && typeof configCallback === 'function') configCallback(instance);
-  aurelia.globalResources('./aurelia-plugins-google-recaptcha-element');
-}
+  _export('configure', configure);
+
+  return {
+    setters: [function (_aureliaPluginsGoogleRecaptchaConfig) {
+      Config = _aureliaPluginsGoogleRecaptchaConfig.Config;
+    }],
+    execute: function () {}
+  };
+});
