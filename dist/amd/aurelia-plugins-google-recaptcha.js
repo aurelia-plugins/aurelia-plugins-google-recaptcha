@@ -1,4 +1,4 @@
-define(['exports', './aurelia-plugins-google-recaptcha-config'], function (exports, _aureliaPluginsGoogleRecaptchaConfig) {
+define(['exports', 'aurelia-pal', './aurelia-plugins-google-recaptcha-config'], function (exports, _aureliaPal, _aureliaPluginsGoogleRecaptchaConfig) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -8,6 +8,6 @@ define(['exports', './aurelia-plugins-google-recaptcha-config'], function (expor
   function configure(aurelia, configCallback) {
     var instance = aurelia.container.get(_aureliaPluginsGoogleRecaptchaConfig.Config);
     if (configCallback !== undefined && typeof configCallback === 'function') configCallback(instance);
-    aurelia.globalResources('./aurelia-plugins-google-recaptcha-element');
+    aurelia.globalResources(_aureliaPal.PLATFORM.moduleName('./aurelia-plugins-google-recaptcha-element'));
   }
 });
