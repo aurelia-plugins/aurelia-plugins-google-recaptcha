@@ -1,4 +1,5 @@
 // IMPORTS
+import {bindingMode} from 'aurelia-binding';
 import {inject} from 'aurelia-dependency-injection';
 import {bindable, customElement, noView} from 'aurelia-templating';
 
@@ -21,11 +22,12 @@ export class Recaptcha {
   _scriptPromise = null;
 
   // BINDABLE PROPERTIES
+  @bindable badge = 'bottomright';
   @bindable callback;
   @bindable size = 'normal';
   @bindable theme = 'light';
   @bindable type = 'image';
-  @bindable widgetId;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) widgetId;
 
   // CONSTRUCTOR
   constructor(element, config) {
@@ -43,7 +45,7 @@ export class Recaptcha {
   // PRIVATE METHODS
   async _initialize() {
     await this._scriptPromise;
-    this.widgetId = window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
+    this.widgetId = window.grecaptcha.render(this._element, { badge: this.badge, callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
   }
 
   _loadApiScript() {

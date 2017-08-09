@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-dependency-injection', 'aurelia-templating', './aurelia-plugins-google-recaptcha-config'], function (_export, _context) {
+System.register(['aurelia-binding', 'aurelia-dependency-injection', 'aurelia-templating', './aurelia-plugins-google-recaptcha-config'], function (_export, _context) {
   "use strict";
 
-  var inject, bindable, customElement, noView, Config, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, Recaptcha;
+  var bindingMode, inject, bindable, customElement, noView, Config, _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, Recaptcha;
 
   function _asyncToGenerator(fn) {
     return function () {
@@ -84,7 +84,9 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
   }
 
   return {
-    setters: [function (_aureliaDependencyInjection) {
+    setters: [function (_aureliaBinding) {
+      bindingMode = _aureliaBinding.bindingMode;
+    }, function (_aureliaDependencyInjection) {
       inject = _aureliaDependencyInjection.inject;
     }, function (_aureliaTemplating) {
       bindable = _aureliaTemplating.bindable;
@@ -94,21 +96,23 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
       Config = _aureliaPluginsGoogleRecaptchaConfig.Config;
     }],
     execute: function () {
-      _export('Recaptcha', Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = noView(), _dec3 = inject(Element, Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
+      _export('Recaptcha', Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = noView(), _dec3 = inject(Element, Config), _dec4 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
         function Recaptcha(element, config) {
           _classCallCheck(this, Recaptcha);
 
           this._scriptPromise = null;
 
-          _initDefineProp(this, 'callback', _descriptor, this);
+          _initDefineProp(this, 'badge', _descriptor, this);
 
-          _initDefineProp(this, 'size', _descriptor2, this);
+          _initDefineProp(this, 'callback', _descriptor2, this);
 
-          _initDefineProp(this, 'theme', _descriptor3, this);
+          _initDefineProp(this, 'size', _descriptor3, this);
 
-          _initDefineProp(this, 'type', _descriptor4, this);
+          _initDefineProp(this, 'theme', _descriptor4, this);
 
-          _initDefineProp(this, 'widgetId', _descriptor5, this);
+          _initDefineProp(this, 'type', _descriptor5, this);
+
+          _initDefineProp(this, 'widgetId', _descriptor6, this);
 
           this._config = config;
           this._element = element;
@@ -130,7 +134,7 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
                     return this._scriptPromise;
 
                   case 2:
-                    this.widgetId = window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
+                    this.widgetId = window.grecaptcha.render(this._element, { badge: this.badge, callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
 
                   case 3:
                   case 'end':
@@ -172,25 +176,30 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', './aureli
         };
 
         return Recaptcha;
-      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'callback', [bindable], {
+      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'badge', [bindable], {
+        enumerable: true,
+        initializer: function initializer() {
+          return 'bottomright';
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'callback', [bindable], {
         enumerable: true,
         initializer: null
-      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'size', [bindable], {
+      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'size', [bindable], {
         enumerable: true,
         initializer: function initializer() {
           return 'normal';
         }
-      }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'theme', [bindable], {
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'theme', [bindable], {
         enumerable: true,
         initializer: function initializer() {
           return 'light';
         }
-      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'type', [bindable], {
+      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'type', [bindable], {
         enumerable: true,
         initializer: function initializer() {
           return 'image';
         }
-      }), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'widgetId', [bindable], {
+      }), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'widgetId', [_dec4], {
         enumerable: true,
         initializer: null
       })), _class2)) || _class) || _class) || _class));

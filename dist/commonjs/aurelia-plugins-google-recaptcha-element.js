@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Recaptcha = undefined;
 
-var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
+
+var _aureliaBinding = require('aurelia-binding');
 
 var _aureliaDependencyInjection = require('aurelia-dependency-injection');
 
@@ -60,21 +62,23 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement)('aup-google-recaptcha'), _dec2 = (0, _aureliaTemplating.noView)(), _dec3 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaPluginsGoogleRecaptchaConfig.Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
+var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement)('aup-google-recaptcha'), _dec2 = (0, _aureliaTemplating.noView)(), _dec3 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaPluginsGoogleRecaptchaConfig.Config), _dec4 = (0, _aureliaTemplating.bindable)({ defaultBindingMode: _aureliaBinding.bindingMode.twoWay }), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
   function Recaptcha(element, config) {
     _classCallCheck(this, Recaptcha);
 
     this._scriptPromise = null;
 
-    _initDefineProp(this, 'callback', _descriptor, this);
+    _initDefineProp(this, 'badge', _descriptor, this);
 
-    _initDefineProp(this, 'size', _descriptor2, this);
+    _initDefineProp(this, 'callback', _descriptor2, this);
 
-    _initDefineProp(this, 'theme', _descriptor3, this);
+    _initDefineProp(this, 'size', _descriptor3, this);
 
-    _initDefineProp(this, 'type', _descriptor4, this);
+    _initDefineProp(this, 'theme', _descriptor4, this);
 
-    _initDefineProp(this, 'widgetId', _descriptor5, this);
+    _initDefineProp(this, 'type', _descriptor5, this);
+
+    _initDefineProp(this, 'widgetId', _descriptor6, this);
 
     this._config = config;
     this._element = element;
@@ -96,7 +100,7 @@ var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement
               return this._scriptPromise;
 
             case 2:
-              this.widgetId = window.grecaptcha.render(this._element, { callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
+              this.widgetId = window.grecaptcha.render(this._element, { badge: this.badge, callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
 
             case 3:
             case 'end':
@@ -138,25 +142,30 @@ var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement
   };
 
   return Recaptcha;
-}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'callback', [_aureliaTemplating.bindable], {
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'badge', [_aureliaTemplating.bindable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return 'bottomright';
+  }
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'callback', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'size', [_aureliaTemplating.bindable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'size', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: function initializer() {
     return 'normal';
   }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'theme', [_aureliaTemplating.bindable], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'theme', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: function initializer() {
     return 'light';
   }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'type', [_aureliaTemplating.bindable], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'type', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: function initializer() {
     return 'image';
   }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'widgetId', [_aureliaTemplating.bindable], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'widgetId', [_dec4], {
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class) || _class);

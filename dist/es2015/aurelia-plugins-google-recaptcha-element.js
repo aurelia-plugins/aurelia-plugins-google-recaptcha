@@ -1,4 +1,4 @@
-var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
@@ -45,24 +45,27 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
+import { bindingMode } from 'aurelia-binding';
 import { inject } from 'aurelia-dependency-injection';
 import { bindable, customElement, noView } from 'aurelia-templating';
 
 import { Config } from './aurelia-plugins-google-recaptcha-config';
 
-export let Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = noView(), _dec3 = inject(Element, Config), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = class Recaptcha {
+export let Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = noView(), _dec3 = inject(Element, Config), _dec4 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = class Recaptcha {
   constructor(element, config) {
     this._scriptPromise = null;
 
-    _initDefineProp(this, 'callback', _descriptor, this);
+    _initDefineProp(this, 'badge', _descriptor, this);
 
-    _initDefineProp(this, 'size', _descriptor2, this);
+    _initDefineProp(this, 'callback', _descriptor2, this);
 
-    _initDefineProp(this, 'theme', _descriptor3, this);
+    _initDefineProp(this, 'size', _descriptor3, this);
 
-    _initDefineProp(this, 'type', _descriptor4, this);
+    _initDefineProp(this, 'theme', _descriptor4, this);
 
-    _initDefineProp(this, 'widgetId', _descriptor5, this);
+    _initDefineProp(this, 'type', _descriptor5, this);
+
+    _initDefineProp(this, 'widgetId', _descriptor6, this);
 
     this._config = config;
     this._element = element;
@@ -79,7 +82,7 @@ export let Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = no
 
     return _asyncToGenerator(function* () {
       yield _this._scriptPromise;
-      _this.widgetId = window.grecaptcha.render(_this._element, { callback: _this.callback, sitekey: _this._config.get('siteKey'), size: _this.size, theme: _this.theme, type: _this.type });
+      _this.widgetId = window.grecaptcha.render(_this._element, { badge: _this.badge, callback: _this.callback, sitekey: _this._config.get('siteKey'), size: _this.size, theme: _this.theme, type: _this.type });
     })();
   }
 
@@ -100,25 +103,30 @@ export let Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = no
       this._scriptPromise = new Promise(resolve => resolve());
     }
   }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'callback', [bindable], {
+}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'badge', [bindable], {
+  enumerable: true,
+  initializer: function () {
+    return 'bottomright';
+  }
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'callback', [bindable], {
   enumerable: true,
   initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'size', [bindable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'size', [bindable], {
   enumerable: true,
   initializer: function () {
     return 'normal';
   }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'theme', [bindable], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'theme', [bindable], {
   enumerable: true,
   initializer: function () {
     return 'light';
   }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'type', [bindable], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'type', [bindable], {
   enumerable: true,
   initializer: function () {
     return 'image';
   }
-}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'widgetId', [bindable], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'widgetId', [_dec4], {
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class) || _class);

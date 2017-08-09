@@ -115,3 +115,28 @@ export class App {
   }
 }
 ```
+
+### Invisible Recaptcha
+
+To use the Invisible Recaptcha, first make sure you have an appropriate siteKey defined in your config. Set the `size` property to `invisible`. You can also set the `badge` property. Use the `window.grecaptcha.execute()` method to invoke the Google Recaptcha and get a response back in the defined callback.
+
+```html
+<form submit.delegate="submit()">
+  <aup-google-recaptcha callback.call="recaptcha($event)" size="invisible"></aup-google-recaptcha>
+  <button type="submit">Submit</button>
+</form>
+```
+
+```javascript
+export class App {
+  response = '';
+
+  recaptcha(response) {
+    this.response = response;
+  }
+
+  submit() {
+    window.grecaptcha.execute();
+  }
+}
+```

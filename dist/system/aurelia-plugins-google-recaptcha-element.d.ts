@@ -2,6 +2,7 @@ export declare class Recaptcha {
     _config: any;
     _element: any;
     _scriptPromise: any;
+    badge: string;
     callback: any;
     size: string;
     theme: string;
