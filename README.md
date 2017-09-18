@@ -122,7 +122,7 @@ To use the Invisible Recaptcha, first make sure you have an appropriate siteKey 
 
 ```html
 <form submit.delegate="submit()">
-  <aup-google-recaptcha callback.call="recaptcha($event)" size="invisible" widget-id="widgetId"></aup-google-recaptcha>
+  <aup-google-recaptcha callback.call="recaptcha($event)" size="invisible" widget-id.bind="widgetId"></aup-google-recaptcha>
   <button type="submit">Submit</button>
 </form>
 ```
