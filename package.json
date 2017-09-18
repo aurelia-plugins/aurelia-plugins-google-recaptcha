@@ -1,6 +1,6 @@
 {
   "name": "aurelia-plugins-google-recaptcha",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "description": "A Google Recaptcha plugin for Aurelia.",
   "keywords": [
     "aurelia",
@@ -47,7 +47,7 @@
   },
   "jspm": {
     "registry": "npm",
-    "main": "index",
+    "main": "aurelia-plugins-google-recaptcha",
     "format": "amd",
     "directories": {
       "dist": "dist/amd"
