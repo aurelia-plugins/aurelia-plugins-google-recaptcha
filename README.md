@@ -12,6 +12,14 @@ npm install aurelia-plugins-google-recaptcha --save
 
 Add `node_modules/babel-polyfill/dist/polyfill.min.js` to the prepend list in `aurelia.json`. Do not forgot to add `babel-polyfill` to the dependencies in `package.json`.
 
+For projects without aurelia cli, like ***skeleton-typescript-webpack***, please add `babel-polyfill` to your webpack.config.js as [documented by babeljs.io](https://babeljs.io/docs/usage/polyfill/#usage-in-node--browserify--webpack):
+
+```
+module.exports = {
+  entry: ["babel-polyfill", "./app/js"]
+};
+```
+
 **JSPM**
 
 ```shell
