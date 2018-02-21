@@ -104,6 +104,7 @@ export class App {
     ValidationRules
       .ensure('response')
         .required().withMessage('Please verify the recaptcha.')
+        .on(this);
     this.validationController.addRenderer(new ValidationRenderer());
   }
   
