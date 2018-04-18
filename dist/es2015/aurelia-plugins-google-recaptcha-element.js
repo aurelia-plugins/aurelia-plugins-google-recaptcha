@@ -99,7 +99,7 @@ export let Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = no
         window.aureliaPluginsGoogleRecaptchaOnLoad = () => resolve();
         script.onerror = err => reject(err);
       });
-    } else this._scriptPromise = new Promise(resolve => resolve());
+    } else if (window.grecaptcha) this._scriptPromise = new Promise(resolve => resolve());
   }
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'badge', [bindable], {
   enumerable: true,

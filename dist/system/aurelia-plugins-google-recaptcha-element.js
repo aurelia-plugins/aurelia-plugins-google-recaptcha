@@ -168,7 +168,7 @@ System.register(['aurelia-binding', 'aurelia-dependency-injection', 'aurelia-tem
                 return reject(err);
               };
             });
-          } else this._scriptPromise = new Promise(function (resolve) {
+          } else if (window.grecaptcha) this._scriptPromise = new Promise(function (resolve) {
             return resolve();
           });
         };

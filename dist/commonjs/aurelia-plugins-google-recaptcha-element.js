@@ -134,7 +134,7 @@ var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement
           return reject(err);
         };
       });
-    } else this._scriptPromise = new Promise(function (resolve) {
+    } else if (window.grecaptcha) this._scriptPromise = new Promise(function (resolve) {
       return resolve();
     });
   };
