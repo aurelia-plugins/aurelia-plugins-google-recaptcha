@@ -130,15 +130,13 @@ var Recaptcha = exports.Recaptcha = (_dec = (0, _aureliaTemplating.customElement
         window.aureliaPluginsGoogleRecaptchaOnLoad = function () {
           return resolve();
         };
-        script.onerror = function (error) {
-          return reject(error);
+        script.onerror = function (err) {
+          return reject(err);
         };
       });
-    } else if (window.grecaptcha) {
-      this._scriptPromise = new Promise(function (resolve) {
-        return resolve();
-      });
-    }
+    } else this._scriptPromise = new Promise(function (resolve) {
+      return resolve();
+    });
   };
 
   return Recaptcha;

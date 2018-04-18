@@ -59,10 +59,9 @@ export class Recaptcha {
       document.head.appendChild(script);
       this._scriptPromise = new Promise((resolve, reject) => {
         window.aureliaPluginsGoogleRecaptchaOnLoad = () => resolve();
-        script.onerror = error => reject(error);
+        script.onerror = err => reject(err);
       });
-    } else if (window.grecaptcha) {
+    } else
       this._scriptPromise = new Promise(resolve => resolve());
-    }
   }
 }

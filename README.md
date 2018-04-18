@@ -10,7 +10,19 @@ A Google Recaptcha plugin for Aurelia.
 npm install aurelia-plugins-google-recaptcha --save
 ```
 
+When using Aurelia CLI add the following dependency to `aurelia.json`:
+
+```json
+{
+  "name": "aurelia-plugins-google-recaptcha",
+  "path": "../node_modules/aurelia-plugins-google-recaptcha/dist/amd",
+  "main": "aurelia-plugins-google-recaptcha"
+}
+```
+
 Add `node_modules/babel-polyfill/dist/polyfill.min.js` to the prepend list in `aurelia.json`. Do not forgot to add `babel-polyfill` to the dependencies in `package.json`.
+
+For projects using Webpack, please add `babel-polyfill` to your `webpack.config.js` as documented by [babeljs.io](https://babeljs.io/docs/usage/polyfill/#usage-in-node--browserify--webpack).
 
 **JSPM**
 
@@ -42,8 +54,8 @@ export async function configure(aurelia) {
       });
     });
 
-    await aurelia.start();
-    aurelia.setRoot('app');
+  await aurelia.start();
+  aurelia.setRoot('app');
 }
 ```
 
@@ -96,18 +108,19 @@ export class App {
     ValidationRules
       .ensure('response')
         .required().withMessage('Please verify the recaptcha.')
+      .on(this);
     this.validationController.addRenderer(new ValidationRenderer());
   }
-  
+
   recaptcha(response) {
     this.response = response;
   }
-  
+
   async submit() {
     try {
       const errors = await this.validationController.validate();
       if (!errors.valid) return;
-      // Do some magic...
+      // Do some magic here...
     }
     catch (err) {
       // Error handling...
