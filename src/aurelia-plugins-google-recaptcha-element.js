@@ -38,16 +38,12 @@ export class Recaptcha {
   }
 
   // LIFECYCLE HANDLERS
-  bind() {
-    this._initialize();
-  }
-
-  // PRIVATE METHODS
-  async _initialize() {
+  async bind() {
     await this._scriptPromise;
     this.widgetId = window.grecaptcha.render(this._element, { badge: this.badge, callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
   }
 
+  // PRIVATE METHODS
   _loadApiScript() {
     if (this._scriptPromise) return;
     if (window.grecaptcha === undefined) {
