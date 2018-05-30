@@ -10,15 +10,19 @@ A Google Recaptcha plugin for Aurelia.
 npm install aurelia-plugins-google-recaptcha --save
 ```
 
+When using Aurelia CLI add the following dependency to `aurelia.json` as described in the [documentation](http://aurelia.io/docs/build-systems/aurelia-cli#adding-client-libraries-to-your-project):
+
+```json
+{
+  "name": "aurelia-plugins-google-recaptcha",
+  "path": "../node_modules/aurelia-plugins-google-recaptcha/dist/amd",
+  "main": "aurelia-plugins-google-recaptcha"
+}
+```
+
 Add `node_modules/babel-polyfill/dist/polyfill.min.js` to the prepend list in `aurelia.json`. Do not forgot to add `babel-polyfill` to the dependencies in `package.json`.
 
-For projects following [skeleton-typescript-webpack](https://github.com/aurelia/skeleton-navigation/tree/master/skeleton-typescript-webpack), please add `babel-polyfill` to your webpack.config.js as [documented by babeljs.io](https://babeljs.io/docs/usage/polyfill/#usage-in-node--browserify--webpack):
-
-```
-module.exports = {
-  entry: ["babel-polyfill", "./app/js"]
-};
-```
+For projects using Webpack, please add `babel-polyfill` to your `webpack.config.js` as documented by [babeljs.io](https://babeljs.io/docs/usage/polyfill/#usage-in-node--browserify--webpack).
 
 **JSPM**
 
@@ -37,21 +41,23 @@ bower install aurelia-plugins-google-recaptcha
 Inside of your `main.js` or `main.ts` file simply load the plugin inside of the configure method using `.plugin()`.
 
 ```javascript
+import {PLATFORM} from 'aurelia-framework';
+
 export async function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
     .developmentLogging();
 
   aurelia.use
-    .plugin('aurelia-plugins-google-recaptcha', config => {
+    .plugin(PLATFORM.moduleName('aurelia-plugins-google-recaptcha'), config => {
       config.options({
         hl: 'en', //see https://developers.google.com/recaptcha/docs/language
         siteKey: '6LcddxgTAAAAAMmkEMa1Vrp6TNcZG8kMMkcn-VCK' //see https://www.google.com/recaptcha/admin#createsite
       });
     });
 
-    await aurelia.start();
-    aurelia.setRoot('app');
+  await aurelia.start();
+  aurelia.setRoot('app');
 }
 ```
 
@@ -104,19 +110,23 @@ export class App {
     ValidationRules
       .ensure('response')
         .required().withMessage('Please verify the recaptcha.')
+<<<<<<< HEAD
         .on(this);
+=======
+      .on(this);
+>>>>>>> upstream/master
     this.validationController.addRenderer(new ValidationRenderer());
   }
-  
+
   recaptcha(response) {
     this.response = response;
   }
-  
+
   async submit() {
     try {
       const errors = await this.validationController.validate();
       if (!errors.valid) return;
-      // Do some magic...
+      // Do some magic here...
     }
     catch (err) {
       // Error handling...

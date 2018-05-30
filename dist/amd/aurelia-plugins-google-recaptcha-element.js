@@ -154,15 +154,13 @@ define(['exports', 'aurelia-binding', 'aurelia-dependency-injection', 'aurelia-t
           window.aureliaPluginsGoogleRecaptchaOnLoad = function () {
             return resolve();
           };
-          script.onerror = function (error) {
-            return reject(error);
+          script.onerror = function (err) {
+            return reject(err);
           };
         });
-      } else if (window.grecaptcha) {
-        this._scriptPromise = new Promise(function (resolve) {
-          return resolve();
-        });
-      }
+      } else if (window.grecaptcha) this._scriptPromise = new Promise(function (resolve) {
+        return resolve();
+      });
     };
 
     return Recaptcha;

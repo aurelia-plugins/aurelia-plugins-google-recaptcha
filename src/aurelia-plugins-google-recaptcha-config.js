@@ -9,6 +9,10 @@ export class Config {
   }
 
   // PUBLIC METHODS
+  all() {
+    return this._config;
+  }
+
   get(key) {
     return this._config[key];
   }
