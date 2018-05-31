@@ -24,6 +24,7 @@ export class Recaptcha {
   // BINDABLE PROPERTIES
   @bindable badge = 'bottomright';
   @bindable callback;
+  @bindable expire;
   @bindable size = 'normal';
   @bindable theme = 'light';
   @bindable type = 'image';
@@ -45,7 +46,7 @@ export class Recaptcha {
   // PRIVATE METHODS
   async _initialize() {
     await this._scriptPromise;
-    this.widgetId = window.grecaptcha.render(this._element, { badge: this.badge, callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
+    this.widgetId = window.grecaptcha.render(this._element, { badge: this.badge, callback: this.callback, 'expired-callback': this.expire, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
   }
 
   _loadApiScript() {
