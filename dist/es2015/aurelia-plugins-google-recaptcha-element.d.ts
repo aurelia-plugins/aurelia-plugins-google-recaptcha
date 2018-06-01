@@ -4,12 +4,12 @@ export declare class Recaptcha {
     _scriptPromise: any;
     badge: string;
     callback: any;
+    expire: any;
     size: string;
     theme: string;
     type: string;
     widgetId: any;
     constructor(element: any, config: any);
-    bind(): void;
-    _initialize(): Promise<void>;
+    bind(): Promise<void>;
     _loadApiScript(): void;
 }

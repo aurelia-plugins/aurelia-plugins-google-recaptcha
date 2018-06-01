@@ -91,7 +91,7 @@ Assuming you have [aurelia-validation](https://github.com/aurelia/validation) co
 
 ```html
 <form submit.delegate="submit()">
-  <aup-google-recaptcha callback.call="recaptcha($event)" value.bind="response & validate"></aup-google-recaptcha>
+  <aup-google-recaptcha callback.call="recaptcha($event)" expire.call="recaptchaExpired($event)" value.bind="response & validate"></aup-google-recaptcha>
   <button type="submit">Submit</button>
 </form>
 ```
@@ -116,6 +116,10 @@ export class App {
 
   recaptcha(response) {
     this.response = response;
+  }
+
+  recaptchaExpired(){
+    this.response = undefined;
   }
 
   async submit() {
