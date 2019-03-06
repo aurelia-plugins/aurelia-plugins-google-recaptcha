@@ -1,9 +1,9 @@
 // IMPORTS
-import {bindingMode} from 'aurelia-binding';
-import {inject} from 'aurelia-dependency-injection';
-import {bindable, customElement, noView} from 'aurelia-templating';
+import { bindingMode } from 'aurelia-binding';
+import { inject } from 'aurelia-dependency-injection';
+import { bindable, customElement, noView } from 'aurelia-templating';
+import { Config } from './aurelia-plugins-google-recaptcha-config';
 
-import {Config} from './aurelia-plugins-google-recaptcha-config';
 
 
 // CLASS ATTRIBUTES
@@ -24,6 +24,7 @@ export class Recaptcha {
   // BINDABLE PROPERTIES
   @bindable badge = 'bottomright';
   @bindable callback;
+  @bindable expire;
   @bindable size = 'normal';
   @bindable theme = 'light';
   @bindable type = 'image';
@@ -40,7 +41,7 @@ export class Recaptcha {
   // LIFECYCLE HANDLERS
   async bind() {
     await this._scriptPromise;
-    this.widgetId = window.grecaptcha.render(this._element, { badge: this.badge, callback: this.callback, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
+    this.widgetId = window.grecaptcha.render(this._element, { badge: this.badge, callback: this.callback, 'expired-callback': this.expire, sitekey: this._config.get('siteKey'), size: this.size, theme: this.theme, type: this.type });
   }
 
   // PRIVATE METHODS
@@ -50,7 +51,7 @@ export class Recaptcha {
       const script = document.createElement('script');
       script.async = true;
       script.defer = true;
-      script.src = `https://www.google.com/recaptcha/api.js?hl=${this._config.get('hl')}&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit`;
+      script.src = `https://www.recaptcha.net/recaptcha/api.js?hl=${this._config.get('hl')}&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit`;
       script.type = 'text/javascript';
       document.head.appendChild(script);
       this._scriptPromise = new Promise((resolve, reject) => {
