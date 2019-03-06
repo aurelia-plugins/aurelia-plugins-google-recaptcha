@@ -48,8 +48,8 @@ function _initializerWarningHelper(descriptor, context) {
 import { bindingMode } from 'aurelia-binding';
 import { inject } from 'aurelia-dependency-injection';
 import { bindable, customElement, noView } from 'aurelia-templating';
-
 import { Config } from './aurelia-plugins-google-recaptcha-config';
+
 
 export let Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = noView(), _dec3 = inject(Element, Config), _dec4 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = class Recaptcha {
   constructor(element, config) {
@@ -94,7 +94,7 @@ export let Recaptcha = (_dec = customElement('aup-google-recaptcha'), _dec2 = no
       const script = document.createElement('script');
       script.async = true;
       script.defer = true;
-      script.src = `https://www.google.com/recaptcha/api.js?hl=${this._config.get('hl')}&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit`;
+      script.src = `https://www.recaptcha.net/recaptcha/api.js?hl=${this._config.get('hl')}&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit`;
       script.type = 'text/javascript';
       document.head.appendChild(script);
       this._scriptPromise = new Promise((resolve, reject) => {

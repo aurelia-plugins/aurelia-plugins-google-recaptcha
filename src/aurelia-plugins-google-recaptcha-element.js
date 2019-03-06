@@ -1,9 +1,9 @@
 // IMPORTS
-import {bindingMode} from 'aurelia-binding';
-import {inject} from 'aurelia-dependency-injection';
-import {bindable, customElement, noView} from 'aurelia-templating';
+import { bindingMode } from 'aurelia-binding';
+import { inject } from 'aurelia-dependency-injection';
+import { bindable, customElement, noView } from 'aurelia-templating';
+import { Config } from './aurelia-plugins-google-recaptcha-config';
 
-import {Config} from './aurelia-plugins-google-recaptcha-config';
 
 
 // CLASS ATTRIBUTES
@@ -55,7 +55,7 @@ export class Recaptcha {
       const script = document.createElement('script');
       script.async = true;
       script.defer = true;
-      script.src = `https://www.google.com/recaptcha/api.js?hl=${this._config.get('hl')}&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit`;
+      script.src = `https://www.recaptcha.net/recaptcha/api.js?hl=${this._config.get('hl')}&onload=aureliaPluginsGoogleRecaptchaOnLoad&render=explicit`;
       script.type = 'text/javascript';
       document.head.appendChild(script);
       this._scriptPromise = new Promise((resolve, reject) => {
